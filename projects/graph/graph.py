@@ -137,9 +137,10 @@ class Graph:
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass # TODO
+        pass
+        
 
-    def dfs_recursive(self, starting_vertex, destination_vertex):
+    def dfs_recursive(self, starting_vertex, destination_vertex, visited=None, path=[]):
         """
         Return a list containing a path from
         starting_vertex to destination_vertex in
@@ -147,7 +148,20 @@ class Graph:
 
         This should be done using recursion.
         """
-        pass  # TODO
+        if visited == None:
+            visited = set()
+        if starting_vertex not in visited:
+            visited.add(starting_vertex)
+        if len(path) == 0:
+            path.append(starting_vertex)
+        if starting_vertex == destination_vertex:
+            return path
+        neighbors = self.get_neighbors(starting_vertex)
+        for neighbor in neighbors:
+            if neighbor not in visited:
+                result = self.dfs_recursive(neighbor, destination_vertex, visited, path + [neighbor])
+                if result is not None:
+                    return result
 
 if __name__ == '__main__':
     graph = Graph()  # Instantiate your graph
