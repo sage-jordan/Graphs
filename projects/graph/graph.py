@@ -126,8 +126,8 @@ class Graph:
             # get all neighbors
             for neighbor in self.get_neighbors(node):
                 new_path = list(path) # copy path
-                new_path.append(neighbor) # append this neighbor
-                queue.append(new_path) # enqueue
+                new_path.append(neighbor) # append path with this neighbor
+                queue.append(new_path) # enqueue whole path
             
 
 
