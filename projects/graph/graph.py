@@ -137,8 +137,25 @@ class Graph:
         starting_vertex to destination_vertex in
         depth-first order.
         """
-        pass
-        
+        # maintain a queue of paths
+        queue = []
+        # push the first path into the queue
+        queue.append([starting_vertex])
+        while queue:
+            # get the first path from the queue
+            path = queue.pop(0)
+            # get the last node from the path
+            print(path)
+            node = path[-1]
+            print(node)
+            # path found
+            if node == destination_vertex:
+                return path
+            # enumerate all neighbor nodes, construct a new path and push it into the queue
+            for neighbor in self.get_neighbors(node):
+                new_path = list(path)
+                new_path.append(neighbor)
+                queue.append(new_path)
 
     def dfs_recursive(self, starting_vertex, destination_vertex, visited=None, path=[]):
         """
